@@ -15,10 +15,12 @@ public class Proyecto1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Juego ven2=new Juego();
-        Inicio ven1=new Inicio(ven2);
-        ven1.setVisible(true);
-        
+        List prueba=new List();
+        prueba.addFirst("hola");
+        prueba.addLast("mundo");
+        System.out.println(prueba.getpFirst().getValor());
+        System.out.println(prueba.getpLast().getValor());
+        System.out.println("hola");
        
     }
     

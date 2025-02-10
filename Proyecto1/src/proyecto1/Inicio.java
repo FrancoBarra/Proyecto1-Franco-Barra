@@ -50,7 +50,7 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Franco Barra Daniel Suarez y Vyckhy Sarmiento");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 370, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 370, -1));
 
         botonInicio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         botonInicio.setText("Iniciar");
@@ -59,7 +59,7 @@ public class Inicio extends javax.swing.JFrame {
                 botonInicioActionPerformed(evt);
             }
         });
-        jPanel1.add(botonInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, -1, -1));
+        jPanel1.add(botonInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, -1, -1));
 
         cargarPartida.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cargarPartida.setText("Cargar Partida");
@@ -75,18 +75,18 @@ public class Inicio extends javax.swing.JFrame {
                 numColumnasActionPerformed(evt);
             }
         });
-        jPanel1.add(numColumnas, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 140, 50));
-        jPanel1.add(numFilas, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, 140, 50));
+        jPanel1.add(numColumnas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 140, 50));
+        jPanel1.add(numFilas, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 140, 50));
 
         jLabel3.setText("Ingrese el número de columnas");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
 
         jLabel4.setText("Ingrese el numero de filas");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, -1, -1));
-        jPanel1.add(numBombs, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, 160, 50));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, -1, -1));
+        jPanel1.add(numBombs, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 320, 160, 50));
 
         jLabel5.setText("Ingrese el  número de bombas");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 300, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
