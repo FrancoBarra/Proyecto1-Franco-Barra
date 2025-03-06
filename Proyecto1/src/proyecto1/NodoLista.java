@@ -15,6 +15,7 @@ public class NodoLista<T> {
     
     public NodoLista(T data){
         this.valor=data;
+        this.pNext=null;
     }
     
     public T getValor(){

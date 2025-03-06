@@ -78,7 +78,7 @@ public class List<T> {
         }
     }
     public void addLast(T data){
-        NodoLista<T> NodoListainfo= new NodoLista<T>(data);
+       NodoLista<T> NodoListainfo= new NodoLista<T>(data);
         if (isEmpty()){
             this.pFirst=NodoListainfo;
             this.pLast=NodoListainfo;
@@ -86,6 +86,19 @@ public class List<T> {
         }else {
             this.pLast.setpNext(NodoListainfo);
             this.pLast=NodoListainfo;
+        }
+    }
+    
+    public void addbyNumber(int number){
+        NodoLista<T> pAux=this.pFirst;
+        NodoLista<T> pPrev=this.pFirst;
+        
+        for(int i=1; i <=number; i++){
+            if (pAux!= null){
+                pPrev=pAux;
+                pAux=pAux.getpNext();
+            }
+            
         }
     }
     public void deletebyNumber(int number){
@@ -120,12 +133,17 @@ public class List<T> {
             }
         }
     }
-       public NodoLista<T> getNodoListabyNumber(int x){
+       public boolean busqueda(T x){
         NodoLista<T> pAux=pFirst;
-        for (int i=0;i<x;i++){
+        while (pAux!=null){
+            if (pAux.getValor()==x){
+                return true;
+            
+            }
             pAux=pAux.getpNext();
+            
         }
-        return pAux;
+        return false;
     }
 
     }

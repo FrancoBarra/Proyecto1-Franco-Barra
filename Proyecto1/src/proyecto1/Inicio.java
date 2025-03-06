@@ -4,6 +4,8 @@
  */
 package proyecto1;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author frank
@@ -94,8 +96,7 @@ public class Inicio extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,8 +112,28 @@ public class Inicio extends javax.swing.JFrame {
 
     private void botonInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInicioActionPerformed
         // TODO add your handling code here:
-        this.game.setVisible(true);
-        this.setVisible(false);
+        String columnas = this.numColumnas.getText();
+        String filas = this.numFilas.getText();
+        String bombas = this.numBombs.getText();
+        if (columnas.trim().isEmpty() || filas.trim().isEmpty() || bombas.trim().isEmpty() ){
+            JOptionPane.showMessageDialog(null, "Llene las casillas vacias");
+        } else{
+            int col = Integer.parseInt(columnas);
+            int fila=Integer.parseInt(filas);
+            int bombs=Integer.parseInt(bombas);
+            if (col>=3 && fila>=3 && bombs>=1){
+                this.game.setVisible(true);
+                this.game.numCol=col;
+                this.game.numBombas=bombs;
+                this.game.numFilas=fila;
+                this.setVisible(false);
+            
+            } else {
+                JOptionPane.showMessageDialog(null, "Las filas y columnas deben ser al menos 3 y debe haber minimo 1 bomba");
+            }
+    
+        } 
+        
     }//GEN-LAST:event_botonInicioActionPerformed
 
     private void numColumnasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numColumnasActionPerformed
