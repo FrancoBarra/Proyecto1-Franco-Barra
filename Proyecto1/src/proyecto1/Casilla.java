@@ -26,7 +26,7 @@ public class Casilla {
         this.marcada = false;
         this.minasAdyacentes = 0;
     }
-
+    // Metodos getters y setters de cada atributo de la clase Casilla
     public String getId() {
         return id;
     }

@@ -47,10 +47,17 @@ public class List<T> {
         this.size = size;
     }
     
-
+    /**
+     * Devuelve True si la lista esta vacia
+     * @return boolean
+     */
     public boolean isEmpty(){
         return this.pFirst == null;
     }
+    /**
+     * Agraga un elemente al principio de la lista
+     * @param data dato a agregar
+     */
    public void addFirst (T data){
         NodoLista<T> NodoListaInfo = new NodoLista<>(data);
         if (isEmpty()) {
@@ -63,20 +70,18 @@ public class List<T> {
             this.pFirst=NodoListaInfo;
         }
     }
-    
+    /**
+     * elimina el ultimo elemento de la lista
+     */
     public void deleteFirst(){
         NodoLista<T> delete = pFirst.getpNext();
         this.pFirst=delete;
     }
     
-    public void print(){
-        NodoLista<T> pAux = this.pFirst;
-        
-        while(pAux != null){
-            System.out.println(pAux.getValor());
-            pAux = pAux.getpNext();
-        }
-    }
+    /**
+     * Agraga un elemente al final de la lista
+     * @param data dato a agregar
+     */
     public void addLast(T data){
        NodoLista<T> NodoListainfo= new NodoLista<T>(data);
         if (isEmpty()){
@@ -89,50 +94,13 @@ public class List<T> {
         }
     }
     
-    public void addbyNumber(int number){
-        NodoLista<T> pAux=this.pFirst;
-        NodoLista<T> pPrev=this.pFirst;
-        
-        for(int i=1; i <=number; i++){
-            if (pAux!= null){
-                pPrev=pAux;
-                pAux=pAux.getpNext();
-            }
-            
-        }
-    }
-    public void deletebyNumber(int number){
-        NodoLista<T> pAux=this.pFirst;
-        NodoLista<T> pPrev=this.pFirst;
-        
-        for(int i=1; i <=number; i++){
-            if (pAux!= null){
-                pPrev=pAux;
-                pAux=pAux.getpNext();
-                
-            }else{
-                System.out.println("No existe ese elemento");
-                break;
-            }
-        }
-        if (pAux!=null){
-            pPrev.setpNext(pAux.getpNext());
-            pAux=null;
-        }
-        
-    }
-    public void setSize(){
-        NodoLista<T> pAux=pFirst;
-        if (!isEmpty()&& pAux.getpNext()==null){
-            size++;
-        }
-        else{
-            while (pAux.getpNext()!=null){
-                size++;
-                pAux=pAux.getpNext();
-            }
-        }
-    }
+    
+    
+        /**
+         * Recorre la lista hasta encontrar el objeto buscado
+         * @param x objeto a buscar
+         * @return boolean
+         */
        public boolean busqueda(T x){
         NodoLista<T> pAux=pFirst;
         while (pAux!=null){

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package proyecto1;
+import javax.swing.*;
 
 /**
  *
@@ -15,11 +16,14 @@ public class Proyecto1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Juego  ven2 = new Juego();
-        Inicio ven= new Inicio(ven2);
+        
+        Inicio ven= new Inicio();
+        
+        SwingUtilities.invokeLater(() -> {
         ven.setVisible(true);
         
        
-    }
+    });
     
+}
 }

@@ -11,14 +11,15 @@ import javax.swing.JOptionPane;
  * @author frank
  */
 public class Inicio extends javax.swing.JFrame {
-    Juego game=new Juego();
+    private Juego game;
+    private boolean metBusqueda;
     /**
      * Creates new form Inicio
-     * @param pantalla
+   
      */
-    public Inicio(Juego pantalla) {
+    public Inicio() {
         initComponents();
-        this.game=pantalla;
+        this.metBusqueda=true;
     }
 
     /**
@@ -41,18 +42,20 @@ public class Inicio extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         numBombs = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        busqueda = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Buscaminas");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 100, 40));
+        jLabel1.setText("BUSCAMINAS");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 30, -1, 40));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("Franco Barra Daniel Suarez y Vyckhy Sarmiento");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 370, -1));
+        jLabel2.setText("Franco Barra ");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, -1, -1));
 
         botonInicio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         botonInicio.setText("Iniciar");
@@ -90,6 +93,17 @@ public class Inicio extends javax.swing.JFrame {
         jLabel5.setText("Ingrese el  número de bombas");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, -1, -1));
 
+        busqueda.setText("BFS");
+        busqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                busquedaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(busqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
+
+        jLabel6.setText("Tipo de busqueda:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,11 +119,23 @@ public class Inicio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Selecciona el archivo a cargar y extrae los datos del grafo guardado
+     * @param evt 
+     */
     private void cargarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarPartidaActionPerformed
         // TODO add your handling code here:
+        Csv csv = new Csv();
+        Grafo grafo =csv.leerGrafoCSV(csv.seleccionarArchivo("leer"));
+        
+        this.game=new Juego(grafo,true, metBusqueda);
+        this.game.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_cargarPartidaActionPerformed
-
+    /**
+     * Lee los datos agregados por el usuario y crea el tablero de juego
+     * @param evt 
+     */
     private void botonInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInicioActionPerformed
         // TODO add your handling code here:
         String columnas = this.numColumnas.getText();
@@ -121,15 +147,22 @@ public class Inicio extends javax.swing.JFrame {
             int col = Integer.parseInt(columnas);
             int fila=Integer.parseInt(filas);
             int bombs=Integer.parseInt(bombas);
-            if (col>=3 && fila>=3 && bombs>=1){
+            if (col>=3 && fila>=3 && bombs>=1 && col<=10 && fila<=10 && bombs<col*fila){
+                Grafo grafo=new Grafo(fila,col,bombs);
+                this.game=new Juego(grafo,false,this.metBusqueda);
                 this.game.setVisible(true);
-                this.game.numCol=col;
-                this.game.numBombas=bombs;
-                this.game.numFilas=fila;
+       
+      
+               
                 this.setVisible(false);
             
             } else {
-                JOptionPane.showMessageDialog(null, "Las filas y columnas deben ser al menos 3 y debe haber minimo 1 bomba");
+                if (col<3 || fila<3){
+                      JOptionPane.showMessageDialog(null, "Las filas y columnas deben ser al menos 3 y debe haber minimo 1 mina");
+                } else {
+                      JOptionPane.showMessageDialog(null, "Las filas y columnas deben ser maximo 10 y no puede haber mas minas que casillas");
+                }
+              
             }
     
         } 
@@ -138,17 +171,34 @@ public class Inicio extends javax.swing.JFrame {
 
     private void numColumnasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numColumnasActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_numColumnasActionPerformed
+/**
+ * Es el boton que cambia el metodo de busqueda
+ * @param evt 
+ */
+    private void busquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaActionPerformed
+        // TODO add your handling code here:
+        if (this.metBusqueda){
+            this.metBusqueda=false;
+            this.busqueda.setText("DFS");
+        } else {
+            this.metBusqueda=true;
+            this.busqueda.setText("BFS");
+        }
+    }//GEN-LAST:event_busquedaActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonInicio;
+    private javax.swing.JButton busqueda;
     private javax.swing.JButton cargarPartida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField numBombs;
     private javax.swing.JTextField numColumnas;
